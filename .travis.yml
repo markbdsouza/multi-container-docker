@@ -19,3 +19,15 @@ after_success:
   - docker push markbdsouza/multi-container-nginx
   - docker push markbdsouza/multi-container-server
   - docker push markbdsouza/multi-container-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-182020159037
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
